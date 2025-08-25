@@ -1,0 +1,70 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /drugs/{document} {
+      allow create: if false;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /drugManagement/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /drugManagement/{parent}/drugManagementDetail/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/drugManagementDetail/{document} {
+      allow read: if true;
+    }
+
+
+    match /intakeSchedule/{document} {
+      allow create: if false;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if false;
+    }
+
+    match /intakeSchedule/{parent}/intakeScheduleDetail/{document} {
+      allow create: if false;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if false;
+    }
+
+    match /{path=**}/intakeScheduleDetail/{document} {
+      allow read: if true;
+    }
+
+
+    match /health_history/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /health_sideEffect/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /user/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+  }
+}
